@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+    <nav class="bg-dark">
+      <a class="p-3 text-white" href="/">Bookers</a>
+    <% if user_signed_in? %>
+      <li><%= link_to user_path(current_user.id) do%><span class="text-white"><i class="fas fa-home"></i>Home</span><% end %></li>
+      <li><%= link_to users_path do%><span class="text-light"><i class="fas fa-users"></i>Users</span><%end%></li>
+      <li><%= link_to books_path do%><span class="text-light"><i class="fas fa-book-open"></i>Books</span><%end%></li>
+      <li><%= link_to destroy_user_session_path, method: :delete do %><span class="text-light"><i class="fas fa-sign-out-alt"></i>Log out</span><% end %></li>
+  <% else %>
+      <li><%= link_to '/' do %><span class="text-light"><i class="fas fa-home"></i>Home</span><% end %></li>
+      <li><%= link_to about_path do %><span class="text-light"><i class="fas fa-link"></i>About</span><% end %></li>
+      <li><%= link_to new_user_registration_path do %><span class="text-light"><i class="fas fa-user-plus"></i>Sign up</span><% end %></li>
+      <li><%= link_to new_user_session_path do %><span class="text-light"><i class="fas fa-sign-in-alt"></i>Log in</span><% end %></li>
+    <% end %>
+  </nav>
+  </header>
+
+  <main>
+    <p><%= notice %></p>
+    <%=yield%>
+  </main>
+  <footer>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
